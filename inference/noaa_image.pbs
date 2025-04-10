@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#Author: Addison English
+#Email: englisa8@my.erau.edu
+#Date: 2025-07-03
+#Project: MIT_LADI_ML
+#PBS -N MIT_LADI_ML Run 0001
+#PBS -l select=1:ncpus=64 
+#PBS -l nodes=1:ppn=192
+#PBS -l walltime=27:00:00  # runtime
+#PBS -q longq
+#PBS -j oe  # Merge standard output and error
+#PBS -o MIT_LADI_ML.log  # Output log file
+#PBS -m abe  # Send email on (a)bort, (b)egin, (e)nd
+#PBS -M englisa8@my.erau.edu  # Email address for notifications
+
+source /apps/spack/share/spack/setup-env.sh
+source /apps/spack/opt/spack/linux-rocky8-x86_64_v4/gcc-8.5.0/lmod-8.7.24-srbfxh5hs7kbo7j64j5upbdfx4epx645/lmod/lmod/init/bash
+
+source ~/.bashrc
+conda activate ladi-v2-env
+
+cd "/scratch/englisa8/QGIS/michael/mit_ml/noaa_image/inference"
+
+python3 file_list_infer.py file_list.txt
